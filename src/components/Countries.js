@@ -7,7 +7,8 @@ const Countries = () => {
   const [rangeValue, setRangeValue] = useState(36);
   const [selectedRadio, setSelectedRadio] = useState("");
   const radios = ["Africa", "America", "Asia", "Europe", "Oceania"];
-  // Les useEffect se joue lorsque le composant est monté
+
+  // Le useEffect se joue lorsque le composant est monté
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
@@ -24,20 +25,18 @@ const Countries = () => {
           defaultValue={rangeValue}
           onChange={(e) => setRangeValue(e.target.value)}
         />
-        {radios.map((continent) => {
-          return (
-            <li>
-              <input
-                type="radio"
-                id={continent}
-                name="continentRadio"
-                checked={continent === selectedRadio}
-                onChange={(e) => setSelectedRadio(e.target.id)}
-              />
-              <label htmlFor={continent}>{continent}</label>
-            </li>
-          );
-        })}
+        {radios.map((continent) => (
+          <li>
+            <input
+              type="radio"
+              id={continent}
+              name="continentRadio"
+              checked={continent === selectedRadio}
+              onChange={(e) => setSelectedRadio(e.target.id)}
+            />
+            <label htmlFor={continent}>{continent}</label>
+          </li>
+        ))}
       </ul>
       {selectedRadio && (
         <button onClick={() => setSelectedRadio("")}>
